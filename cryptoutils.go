@@ -11,7 +11,7 @@ import (
 	"github.com/GoKillers/libsodium-go/cryptosign"
 )
 
-//Sign a String using SecretKey
+//SignSimple is a function that Signs a string based on Serect Key
 func SignSimple(plainText string, secretKey string) (signString string, hashString string, errorValue error) {
 
 	sk64Decoded, _ := b64.StdEncoding.DecodeString(secretKey)
@@ -23,6 +23,7 @@ func SignSimple(plainText string, secretKey string) (signString string, hashStri
 	return signString, hashString, nil
 }
 
+//VerifySignSimple verifies signature, hash  based on PublicKey
 func VerifySignSimple(signText string, messageText string, hashInText string, publicKey string) (signVerified int, errorValue error) {
 	//Hash the message
 
@@ -38,7 +39,7 @@ func VerifySignSimple(signText string, messageText string, hashInText string, pu
 
 }
 
-//Hash a Message and return Hash String
+//HashSimple produces a Hash of string
 func HashSimple(message string) (hashString string, hashBytes []byte) {
 	//Pass Byte array to hash
 	m := make([]byte, len(message))
@@ -50,7 +51,7 @@ func HashSimple(message string) (hashString string, hashBytes []byte) {
 	return hashString, hashBytes
 }
 
-//Hash a Message and return Hash String
+//HashFileSimple produces a Hash of a File
 func HashFileSimple(inputFilePath string) (hashString string, hashBytes []byte, errorValue error) {
 	file, err := os.Open(inputFilePath)
 	if err != nil {
@@ -79,6 +80,7 @@ func HashFileSimple(inputFilePath string) (hashString string, hashBytes []byte, 
 	return hashString, hashBytes, nil
 }
 
+//SignFileSimple signs a local file
 func SignFileSimple(inputFilePath string, secretKey string) (signString string, hashString string, errorValue error) {
 
 	sk64Decoded, _ := b64.StdEncoding.DecodeString(secretKey)
@@ -90,6 +92,7 @@ func SignFileSimple(inputFilePath string, secretKey string) (signString string, 
 	return signString, hashString, nil
 }
 
+//VerifyFileSimple verifies a local file
 func VerifyFileSimple(signText string, inputFilePath string, hashInText string, publicKey string) (signVerified int, errorValue error) {
 	//Hash the message
 

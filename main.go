@@ -24,16 +24,18 @@ type Response struct {
 	OK      bool   `json:"ok"`
 }
 
-//Structure to represent response for Signing Operation
+//SignResponse type to represent response for Signing Operation
 type SignResponse struct {
 	SignText string
 	HashText string
 }
 
+//VerifySignResposne type to represent response for verification
 type VerifySignResposne struct {
 	VerifiedStatus bool
 }
 
+//Handler function to be invoked by AWS Lambda
 func Handler(request Request) (Response, error) {
 	operation := request["operation"]
 	fmt.Println("Operation requested is ", operation)
